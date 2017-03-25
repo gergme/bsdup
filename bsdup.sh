@@ -1,4 +1,4 @@
-!#/usr/bin/env bash
+#!/usr/bin/env bash
 
 BSDUP_VERSION="0.6"
 BSD_VERSION[0]=`uname -r`
@@ -8,7 +8,7 @@ PORT_TRACKER_FILE="/tmp/port-track.db"
 UPDATING_LIMIT="30"
 JQ_CMD=`which jq`
 CURL_CMD=`which curl`
-UPDATING_DATES=`${CURL_CMD} -s 'http://updating.braincomb.com/UPDATING.json' | ${JQ_CMD} '.updating[] .date' | sed "s/^\([\"']\)\(.*\)\1\$/\2/g`
+UPDATING_DATES=`${CURL_CMD} -s 'http://updating.braincomb.com/UPDATING.json' | ${JQ_CMD} '.updating[] .date' | sed "s/^\([\"']\)\(.*\)\1\$/\2/g"`
 DEBUG="1" # 0 for off, 1 for on
 
 debug(){
@@ -41,10 +41,12 @@ os-update(){
 }
 
 corrupt-db(){
+	sleep .5
 	# Place marker for corrupt database handling
 }
 
 check-updating(){
+	sleep .5
 	# Place marker for checking the /usr/ports/UPDATING file for notes within the range specified in $UPDATING_LIMIT, expressed in days
 	# Compare to $PORT_TRACKER_FILE and alert if there is a match
 	# $UPDATING_DATES contains the dates that are in /usr/ports/UPDATING
