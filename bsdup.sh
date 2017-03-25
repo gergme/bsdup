@@ -71,7 +71,7 @@ ports-update(){
 	echo "***"
 	echo "*** Updating pkg database..."
 	echo "***"
-	#/usr/local/sbin/portmaster
+	/usr/local/sbin/portmaster -adwv
 }
 
 ports-audit(){
