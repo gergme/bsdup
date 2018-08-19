@@ -30,7 +30,7 @@ If you'd prefer to install thes packages manually, here's the packages it instal
 | Option | Description |
 |--------|--------|
 |-h, --help|Displays all options and a short description of their functions |
-|-b, --base|Upgrades your FreeBSD base by automating use of the "freebsd-update" tool|
+|-b, --base|Upgrades your FreeBSD base by automating use of the ["freebsd-update"](https://www.freebsd.org/cgi/man.cgi?freebsd-update) tool|
 |-u, --upgrade|Upgrades your FreeBSD ports database by automating the use of portsnap and portmaster|
 |-c, --check-update|Updates your ports database by automating the use of portsnap, then displays list of upgradable ports|
 |-i, --install-required|Installs all requires ports for all functions of FreeBSD Updater (bsdup) to work properly|
