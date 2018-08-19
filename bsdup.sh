@@ -115,9 +115,11 @@ while test $# -gt 0; do
 			-e|--exclude-flagged)
 					shift
 					exit 0
+					;;
 			-i|--install-required)
 					shift
 					exit 0
+					;;
 			-v|--version)
 					version
 					exit 0
