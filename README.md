@@ -12,7 +12,7 @@
 
 This project aims to make updating from the FreeBSD ports collection as seamless as possible, including dealing with common portsdb/pkg issues, and interfaces with Braincomb's UPDATING.json (http://updating.braincomb.com/UPDATING.json).  This tool is a wrapper script which utilizes multiple tools available in the pkg database, to satisfy these requirements run this command:
 
-#### TLDR;
+#### TLDR
 
 ```
 bsdup.sh --install-required
