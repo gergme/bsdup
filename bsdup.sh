@@ -94,6 +94,8 @@ while test $# -gt 0; do
 					echo "-b, --base		Update FreeBSD base"
 					echo "-u, --upgrade		Perform full upgrade of ports"
 					echo "-c, --check-update	Check ports for updates"
+					echo "-e, --exclude-flagged     Automatically exclude ports flagged in UPDATING file"
+					echo "-i, --install-required    Install all required packages for FreeBSD Updater to work"
 					echo "-v, --version		Show version"
 					exit 0
 					;;
@@ -110,6 +112,12 @@ while test $# -gt 0; do
 					shift
 					exit 0
 					;;
+			-e|--exclude-flagged)
+					shift
+					exit 0
+			-i|--install-required)
+					shift
+					exit 0
 			-v|--version)
 					version
 					exit 0
