@@ -14,7 +14,7 @@ options:
 
 This project aims to make updating from the FreeBSD ports collection as seamless as possible, including dealing with common portsdb/pkg issues, and interfaces with Braincomb's UPDATING.json (http://updating.braincomb.com/UPDATING.json) to warn you if a package scheduled to be updated has special instructions for installing with an option to exclude any UPDATING flagged packages.  This allows you to manually interact with the effected ports and reduce the risk of breaking the port or the database.  This tool is a wrapper script which utilizes multiple tools available in the pkg database, to satisfy these requirements run this command:
 
-### TLDR
+### TLDR;
 
 ```
 bsdup.sh --install-required
