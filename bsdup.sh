@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-BSDUP_VERSION="0.6"
+BSDUP_VERSION="0.6.99 [pre 0.7]"
 BSD_VERSION[0]=`uname -r`
 BSD_VERSION[1]="echo $BSD_VERSION[0] | tr -d '.'"
 LOG_FILE="/var/log/freebsd-update.log"
