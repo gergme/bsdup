@@ -1,17 +1,19 @@
 ## FreeBSD Updater v0.75
 
 ```options:
--h, --help				Its what youre looking at!
--b, --base				Update FreeBSD base
--u, --upgrade			Perform full upgrade of ports
--c, --check-update		Check ports for updates
--i, --install-required	Install all required packages for FreeBSD Updater to work	
--v, --version			Show version```
+-h, --help					Its what youre looking at!
+-b, --base					Update FreeBSD base
+-u, --upgrade				Perform full upgrade of ports
+-c, --check-update			Check ports for updates
+-i, --install-required		Install all required packages for FreeBSD Updater to work	
+-v, --version				Show version```
 
 #### Project Description
+
 This project aims to make updating from the FreeBSD ports collection as seamless as possible, including dealing with common portsdb/pkg issues, and interfaces with Braincomb's UPDATING.json (http://updating.braincomb.com/UPDATING.json).  This tool is a wrapper script which utilizes multiple tools available in the pkg database, to satisfy these requirements run this command:
 
 #### TLDR;
+
 ```
 bsdup.sh --install-required
 ```
@@ -29,8 +31,7 @@ If you'd prefer to install thes packages manually, here's the packages it instal
 |-b, --base|Upgrades your FreeBSD base by automating use of the "freebsd-update" tool|
 |-u, --upgrade|Upgrades your FreeBSD ports database by automating the use of portsnap and portmaster|
 |-c, --check-update|Updates your ports database by automating the use of portsnap, then displays list of upgradable ports|
-|-i, --install-required|Installs all requires ports for all functions of FreeBSD Updater (bsdup) to work properly, see the 
-
+|-i, --install-required|Installs all requires ports for all functions of FreeBSD Updater (bsdup) to work properly|
 
 #### License
 
