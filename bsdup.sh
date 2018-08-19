@@ -8,26 +8,26 @@ PORT_TRACKER_FILE="/tmp/port-track.db"
 UPDATING_LIMIT="30"
 JQ_CMD=`which jq`
 CURL_CMD=`which curl`
-UPDATING_DATES=`${CURL_CMD} -s 'http://updating.braincomb.com/UPDATING.json' | ${JQ_CMD} '.updating[] .date' | sed "s/^\([\"']\)\(.*\)\1\$/\2/g"`
+UPDATING_DATES=`${CURL_CMD} -s 'http://updating.braincomb.com/UPDATING.json' | ${JQ_CMD} '.updating[] .date' | sed "s/^\([\"']\)\(.*\)\1\$/\2/g" | head -n ${UPDATING_LIMIT}`
 DEBUG="1" # 0 for off, 1 for on
 
 debug(){
 	echo "***"
 	echo "*** Settings"
-	echo "*** BSDUP_VERSION = $BSDUP_VERSION"
-	echo "*** BSD_VERSION[0] = $BSD_VERSION[0]"
-	echo "*** BSD_VERSION[1] = $BSD_VERSION[1]"
-	echo "*** LOG_FILE = $LOG_FILE"
-	echo "*** PORT_TRACKER_FILE = $PORT_TRACKER_FILE"
-	echo "*** UPDATING_LIMIT = $UPDATING_LIMIT"
-	echo "*** JQ_CMD = $JQ_CMD"
-	echo "*** CURL_CMD = $CURL_CMD"
+	echo "*** BSDUP_VERSION = ${BSDUP_VERSION}"
+	echo "*** BSD_VERSION[0] = ${BSD_VERSION[0]}"
+	echo "*** BSD_VERSION[1] = ${BSD_VERSION[1]}"
+	echo "*** LOG_FILE = ${LOG_FILE}"
+	echo "*** PORT_TRACKER_FILE = ${PORT_TRACKER_FILE}"
+	echo "*** UPDATING_LIMIT = ${UPDATING_LIMIT}"
+	echo "*** JQ_CMD = ${JQ_CMD}"
+	echo "*** CURL_CMD = ${CURL_CMD}"
 }
 
 version(){
 	echo "***"
-	echo "*** FreeBSD Updater v$BSDUP_VERSION"
-	echo "*** FreeBSD Version $BSD_VERSION[0]"
+	echo "*** FreeBSD Updater v${BSDUP_VERSION}"
+	echo "*** FreeBSD Version ${BSD_VERSION[0]}"
 	echo "***"
 }
 
