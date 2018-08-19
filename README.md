@@ -1,12 +1,14 @@
 ## FreeBSD Updater v0.75
 
-```options:
+```
+options:
 -h, --help					Its what youre looking at!
 -b, --base					Update FreeBSD base
 -u, --upgrade				Perform full upgrade of ports
 -c, --check-update			Check ports for updates
 -i, --install-required		Install all required packages for FreeBSD Updater to work	
--v, --version				Show version```
+-v, --version				Show version
+```
 
 ### Project Description
 
