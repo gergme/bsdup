@@ -6,13 +6,14 @@ options:
 -b, --base                Update FreeBSD base
 -u, --upgrade             Perform full upgrade of ports
 -c, --check-update        Check ports for updates
+-e, --exclude-flagged     Automatically exclude ports flagged in UPDATING file
 -i, --install-required    Install all required packages for FreeBSD Updater to work	
 -v, --version             Show version
 ```
 
 ### Project Description
 
-This project aims to make updating from the FreeBSD ports collection as seamless as possible, including dealing with common portsdb/pkg issues, and interfaces with Braincomb's UPDATING.json (http://updating.braincomb.com/UPDATING.json) to warn you if a package scheduled to be updated has special instructions for installing with an option to exclude any UPDATING flagged packages.  This allows you to manually interact with the effected ports and reduce the risk of breaking the port or the database.  This tool is a wrapper script which utilizes multiple tools available in the pkg database, to satisfy these requirements run this command:
+This project aims to make updating from the FreeBSD ports collection as seamless as possible, including dealing with common portsdb/pkg issues, and interfaces with Braincomb's [UPDATING.json](http://updating.braincomb.com/UPDATING.json) to warn you if a package scheduled to be updated has special instructions for installing or upgrading with an option to exclude any UPDATING flagged packages.  This allows you to manually interact with the effected ports and reduce the risk of breaking the port or the database.  This tool is a wrapper script which utilizes multiple tools available in the pkg database, to satisfy these requirements run this command:
 
 ### TLDR;
 
@@ -33,6 +34,7 @@ If you'd prefer to install thes packages manually, here's the packages it instal
 |-b, --base|Upgrades your FreeBSD base by automating use of the ["freebsd-update"](https://www.freebsd.org/cgi/man.cgi?freebsd-update) tool|
 |-u, --upgrade|Upgrades your FreeBSD ports database by automating the use of portsnap and portmaster|
 |-c, --check-update|Updates your ports database by automating the use of portsnap, then displays list of upgradable ports|
+|-e, --exclude-flagged|Matches all updatable ports and compares them to [UPDATING](http://updating.braincomb.com/UPDATING.json) and rebuilds upgrade list to exclude these potentially dangerous port upgrades [*Highly Recommended*]|
 |-i, --install-required|Installs all requires ports for all functions of FreeBSD Updater (bsdup) to work properly|
 
 ### License
