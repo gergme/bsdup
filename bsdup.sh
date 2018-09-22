@@ -2,14 +2,43 @@
 
 BSDUP_VERSION="0.6.99 [pre 0.7]"
 BSD_VERSION[0]=`uname -r`
-BSD_VERSION[1]="echo $BSD_VERSION[0] | tr -d '.'"
+BSD_VERSION[1]=`echo $BSD_VERSION[0] | tr -d '.'`
 LOG_FILE="/var/log/freebsd-update.log"
 PORT_TRACKER_FILE="/tmp/port-track.db"
 UPDATING_LIMIT="30"
 JQ_CMD=`which jq`
 CURL_CMD=`which curl`
-UPDATING_DATES=`${CURL_CMD} -s 'http://updating.braincomb.com/UPDATING.json' | ${JQ_CMD} '.updating[] .date' | sed "s/^\([\"']\)\(.*\)\1\$/\2/g" | head -n ${UPDATING_LIMIT}`
+SERVICE_CMD=`which service`
+UPDATING_DATES[0]=`${CURL_CMD} -s 'http://updating.braincomb.com/UPDATING.json' | ${JQ_CMD} '.updating[] .date' | sed "s/^\([\"']\)\(.*\)\1\$/\2/g" | head -n ${UPDATING_LIMIT}`
+UPDATING_DATES[1]=`${CURL_CMD} -s 'http://updating.braincomb.com/UPDATING.json' | ${JQ_CMD} '.updating[] .date' | sed "s/^\([\"']\)\(.*\)\1\$/\2/g" | head -n ${UPDATING_LIMIT}`
 DEBUG="1" # 0 for off, 1 for on
+AUTO_SVC_RESTART="1" # 1 to automatically restart all services after port upgrades
+
+is_Screen(){
+	if [ "${TERM}" != "screen" ]; then 
+		echo "***"
+		echo "*** ERROR [${TERM}]: You MUST run this script from a SCREEN session"
+		echo "***"
+		exit 1
+	else
+		echo "***"
+		echo "*** SCREEN session [${STY}] detected!"
+		echo "***"
+	fi
+}
+
+restart_Services(){
+	if [ ${AUTO_SVC_RESTART} == "1" ]; then
+		echo "***"
+		echo "*** Restarting services"
+		echo "***"
+		${SERVICE_CMD} -R
+	else
+		echo "***"
+		echo "*** Skipping service restart"
+		echo "***"
+	fi
+}
 
 debug(){
 	echo "***"
@@ -22,6 +51,7 @@ debug(){
 	echo "*** UPDATING_LIMIT = ${UPDATING_LIMIT}"
 	echo "*** JQ_CMD = ${JQ_CMD}"
 	echo "*** CURL_CMD = ${CURL_CMD}"
+	echo "*** AUTO_SVC_RESTART = ${AUTO_SVC_RESTART}"
 }
 
 version(){
@@ -62,14 +92,13 @@ ports-check(){
 	echo "*** Updating ports database"
 	echo "***"
 	/usr/sbin/portsnap fetch update | tee ${LOG_FILE}
-	PORT_TRACKER_FILE
+	#PORT_TRACKER_FILE
 	CHK_PORTSDB="1"
 }
 
 ports-update(){
-	if [ "$CHK_PORTSDB" != "1" ]; then ports-check; else :; fi
 	echo "***"
-	echo "*** Updating pkg database..."
+	echo "*** Upgrading ports..."
 	echo "***"
 	/usr/local/sbin/portmaster -adwv
 }
@@ -79,6 +108,13 @@ ports-audit(){
 	echo "*** Checking installed ports for known security problems..."
 	echo "***"
 	/usr/sbin/pkg audit | tee ${LOG_FILE}
+}
+
+updating_warning(){
+	echo "***"
+	echo "*** IT IS HIGHLY RECOMMENDED YOU CHECK THE UPDATING FILE AND MANUALLY INSTALL AFFECTED PORTS BEFORE RUNNING THIS SCRIPT!"
+	echo "***"
+	return
 }
 
 # End of functions #
@@ -99,16 +135,20 @@ while test $# -gt 0; do
 					echo "-v, --version		Show version"
 					exit 0
 					;;
+                        -c|--check-update)
+                                        ports-check
+                                        shift
+                                        exit 0
+                                        ;;
+
 			-b|--base)
 					os-update
 					;;
 			-u|--upgrade)
-					updating_warning && sleep 5
+					updating_warning
+					is_Screen
 					ports-update
-					shift
-					exit 0
-					;;
-			-c|--check-update)
+					restart_Services
 					shift
 					exit 0
 					;;
