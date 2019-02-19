@@ -39,9 +39,9 @@ If you'd prefer to install these packages manually, here's the packages it insta
 
 ### License
 
-MIT License
+Copyleft (c)2019 gergme
 
-Copyright (c)2018 gergme
+MIT License
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
