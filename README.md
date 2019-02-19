@@ -35,7 +35,7 @@ If you'd prefer to install these packages manually, here's the packages it insta
 |-u, --upgrade|Upgrades your FreeBSD ports database by automating the use of portsnap and portmaster|
 |-c, --check-update|Updates your ports database by automating the use of portsnap, then displays list of upgradable ports|
 |-e, --exclude-flagged|Matches all updatable ports and compares them to [UPDATING](http://updating.braincomb.com/UPDATING.json) and rebuilds upgrade list to exclude these potentially dangerous port upgrades [*Highly Recommended*]|
-|-i, --install-required|Installs all requires ports for all functions of FreeBSD Updater (bsdup) to work properly|
+|-i, --install-required|Installs all required ports for all functions of FreeBSD Updater (bsdup) to work properly|
 
 ### License
 
