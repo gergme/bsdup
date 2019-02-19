@@ -22,7 +22,7 @@ bsdup.sh --install-required
 ```
 
 It's *important* that you install the required packages, this script uses a lot of common and not so common tools to accomplish it's tasks.
-If you'd prefer to install thes packages manually, here's the packages it installs:
+If you'd prefer to install these packages manually, here's the packages it installs:
 
 ** RESERVED for PKG list **
 
